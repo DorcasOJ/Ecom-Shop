@@ -40,7 +40,6 @@ import {
   selectCartItems,
 } from "../../cart/CartSlice";
 import { SHIPPING, TAXES } from "../../../constants";
-import { resetCartByUserId } from "../../cart/cartApi";
 
 export const Checkout = () => {
   const status = "";
@@ -77,7 +76,6 @@ export const Checkout = () => {
   const handleAddAddress = (data) => {
     const address = { ...data, user: loggedInUser._id };
     dispatch(addAddressAsync(address));
- 
   };
 
   const handleCreateOrder = () => {
