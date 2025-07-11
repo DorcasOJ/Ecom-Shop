@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+// This configuration file is used to set up the JavaScript project with a base URL and path aliases.
+// It allows for cleaner imports in the project by using the '@/' alias to refer to the 'src' directory.
