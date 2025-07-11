@@ -1,12 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import {
-//   fetchAllBrands,
-//   createBrand,
-//   updateBrandById,
-//   getBrandById,
-//   searchBrand,
-//   deleteBrand,
-// } from "./BrandsApi";
 import {
   createBrand,
   getBrandById,
