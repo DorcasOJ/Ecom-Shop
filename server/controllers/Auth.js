@@ -146,11 +146,11 @@ exports.resendOtp = async (req, res) => {
     });
     await newOtp.save();
 
-    // await sendMail(
-    //   existingUser.email,
-    //   `OTP Verification for your ECOM Account`,
-    //   `Your one-Time Password (OTP) for account verification is: <b>${otp}</b>.</br>Do not share this OTP with anyone for security reasons`
-    // );
+    await sendMail(
+      existingUser.email,
+      `OTP Verification for your ECOM Account`,
+      `Your one-Time Password (OTP) for account verification is: <b>${otp}</b>.</br>Do not share this OTP with anyone for security reasons`
+    );
 
     res.status(201).json({ message: "OTP sent" });
   } catch (error) {
@@ -181,7 +181,6 @@ exports.forgotPassword = async (req, res) => {
     });
     const resetToken = generateToken(sanitizeUser(isExistingUser), true);
 
-    console.log("password reset token", resetToken);
     // hash the token
     const hashedToken = await bcrypt.hash(resetToken, 10);
 
@@ -192,28 +191,31 @@ exports.forgotPassword = async (req, res) => {
       expiresAt: Date.now() + parseInt(process.env.OTP_EXPIRATION_TIME),
     });
     await newToken.save();
+    console.log(
+      `${process.env.ORIGIN}/reset-password/${isExistingUser._id}/${resetToken}`
+    );
 
     // send password reset link to user's email
 
-    // await sendMail(
-    //   isExistingUser.email,
-    //   `Password Reset Lin for you ECOM Account`,
-    //   `<p>Dear ${isExistingUser.name},
-    //     We received a request to reset the password for your ECOM account.
-    //     If you initiated this request, please use the following link to reset your password:</p>
+    await sendMail(
+      isExistingUser.email,
+      `Password Reset Lin for you ECOM Account`,
+      `<p>Dear ${isExistingUser?.name},
+        We received a request to reset the password for your ECOM account.
+        If you initiated this request, please use the following link to reset your password:</p>
 
-    //     <p>
-    //     <a href=${process.env.ORIGIN}/reset-password/${isExistingUser._id}/${resetToken} target="_blank">Reset Password</a>
-    //     </p>
+        <p>
+        <a href=${process.env.ORIGIN}/reset-password/${isExistingUser._id}/${resetToken} target="_blank">Reset Password</a>
+        </p>
 
-    //     <p>
-    //     This link is valid for a limited time. If you did not request a password reset, please ignore this email. Your account security is important to us.
+        <p>
+        This link is valid for a limited time. If you did not request a password reset, please ignore this email. Your account security is important to us.
 
-    //     Thank you,
-    //     The ECOM Team
-    //     </p>
-    //     `
-    // );
+        Thank you,
+        The ECOM Team
+        </p>
+        `
+    );
 
     res.status(200).json({
       message: `Password Reset link sent to ${isExistingUser.email}`,

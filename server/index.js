@@ -52,10 +52,7 @@ server.use(
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: {
-      maxAge: new Date(
-        Date.now() +
-          parseInt(process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000)
-      ),
+      maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
       sameSite: process.env.PRODUCTION === "true" ? "None" : "Lax",
       secure: process.env.PRODUCTION === "true" ? true : false,

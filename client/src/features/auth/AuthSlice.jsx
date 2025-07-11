@@ -209,15 +209,15 @@ const authSlice = createSlice({
         state.forgotPasswordError = action.payload;
       })
       .addCase(resetPasswordAsync.pending, (state) => {
-        state.forgotPasswordStatus = "pending";
+        state.resetPasswordStatus = "pending";
       })
       .addCase(resetPasswordAsync.fulfilled, (state, action) => {
-        state.forgotPasswordStatus = "fulfilled";
+        state.resetPasswordStatus = "fulfilled";
         state.resetPasswordSuccessMessage = action.payload;
       })
 
       .addCase(resetPasswordAsync.rejected, (state, action) => {
-        state.forgotPasswordStatus = "rejected";
+        state.resetPasswordStatus = "rejected";
         state.resetPasswordError = action.error;
       })
 
@@ -270,9 +270,9 @@ export const selectOtpVerificationStatus = (state) =>
 export const selectOtpVerificationError = (state) =>
   state.AuthSlice.otpVerificationError;
 export const selectForgotPasswordStatus = (state) =>
-  state.AuthSlice.forgotPasswordSuccessMessage;
+  state.AuthSlice.forgotPasswordStatus;
 export const selectForgotPasswordSuccessMessage = (state) =>
-  state.AuthSlice.otpVerificationSuc;
+  state.AuthSlice.forgotPasswordSuccessMessage;
 export const selectForgotPasswordError = (state) =>
   state.AuthSlice.forgotPasswordError;
 export const selectResetPasswordError = (state) =>

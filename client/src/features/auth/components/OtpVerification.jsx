@@ -135,7 +135,7 @@ export const OtpVerification = () => {
               <Stack>
                 <Typography color={"GreyText"}>
                   {" "}
-                  Enter the 4 digit OTP sent on
+                  Enter the 4 digit OTP sent to
                 </Typography>
                 <Typography fontWeight={"600"} color={"GrayText"}>
                   {loggedInUser?.email}
@@ -173,7 +173,7 @@ export const OtpVerification = () => {
           <>
             <Stack>
               <Typography color={"GrayText"}>
-                We will send you an OTP on
+                We will send you an OTP to
               </Typography>
               <Typography fontWeight={"600"} color={"GrayText"}>
                 {loggedInUser?.email}

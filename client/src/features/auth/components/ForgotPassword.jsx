@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const ForgotPassword = () => {
   const {

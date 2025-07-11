@@ -9,7 +9,7 @@ import {
   selectResetPasswordStatus,
   selectResetPasswordSuccessMessage,
 } from "../AuthSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import {
   Button,
@@ -51,12 +51,15 @@ export const ResetPassword = () => {
 
   useEffect(() => {
     if (status === "fulfilled") {
-      toast.success(successMessage?.message);
+      toast.success(
+        `${successMessage?.message}. Kindly login with new Password`
+      );
     }
+
     return () => {
       dispatch(clearResetPasswordSuccessMessage());
     };
-  });
+  }, [status]);
 
   useEffect(() => {
     return () => {
@@ -78,7 +81,7 @@ export const ResetPassword = () => {
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <Stack component={Paper} elevation={2}>
+      <Stack component={Paper} elevation={2} mb={3}>
         <Stack
           component={"form"}
           width={is500 ? "82vw" : "30rem"}
@@ -157,6 +160,26 @@ export const ResetPassword = () => {
           </motion.div>
         </Stack>
       </Stack>
+
+      <motion.div
+        whileHover={{ x: 2 }}
+        whileTap={{ scale: 1.05 }}
+        alignSelf={"flex-start"}
+      >
+        <Typography
+          component={Link}
+          to={"/login"}
+          variant="body2"
+          sx={{
+            textDecoration: "none",
+            color: "text.primary",
+            width: "fit-content",
+          }}
+        >
+          Go back to{" "}
+          <span style={{ color: theme.palette.primary.dark }}>Login</span>
+        </Typography>
+      </motion.div>
     </Stack>
   );
 };
