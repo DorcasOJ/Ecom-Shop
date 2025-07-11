@@ -3,7 +3,7 @@ const Otp = require("../models/OTP");
 const { generateToken } = require("../utils/GenerateToken");
 const {
   getSanitizedAndTokenizedUser,
-} = require("../utils/getSanitizedAndTokenizedUser");
+} = require("../utils/GetSanitizedAndTokenizedUser");
 
 const { sanitizeUser } = require("../utils/SanitizeUser");
 const bcrypt = require("bcryptjs");
