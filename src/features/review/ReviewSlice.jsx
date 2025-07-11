@@ -4,7 +4,7 @@ import {
   deleteReviewsById,
   fetchReviewsByProductId,
   updateReviewsById,
-} from "./reviewApi";
+} from "./ReviewApi";
 
 const initialState = {
   reviewAddStatus: "idle",
