@@ -72,7 +72,7 @@ export const Login = () => {
     }
     return () => {
       dispatch(clearLoginError());
-      dispatch(resetLoginStatus());
+      // dispatch(resetLoginStatus());
     };
   }, [status]);
 
@@ -81,6 +81,8 @@ export const Login = () => {
     delete cred.confirmPassword;
     dispatch(loginAsync(cred));
   };
+
+  console.log(status);
 
   return (
     <Stack
