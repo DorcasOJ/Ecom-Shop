@@ -8,7 +8,7 @@ exports.verifyToken = async (req, res, next) => {
 
     if (!token) {
       return res.status(401).json({
-        message: `Token missing, please login again. ${req.session}`,
+        message: `Token missing, please login again.`,
       });
     }
 

@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 4000;
 connectToDB();
 
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser());
 server.use(morgan("tiny"));
 
