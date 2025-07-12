@@ -29,21 +29,20 @@ server.use(cookieParser());
 server.use(morgan("tiny"));
 
 // change to single origin later
-// const allowedOrigins = [process.env.ORIGIN, process.env.ORIGIN2];
+const allowedOrigins = [process.env.ORIGIN, process.env.ORIGIN2];
 
 // middlewares
-// function (origin, callback) {
-//       // allow req with no origin like mobile apps or curls
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.includes(origin)) {
-//         return callback(null, true);
-//       } else {
-//         return callback(new Error("Not allowed by CORS"));
-//       }
-//     },
 server.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: function (origin, callback) {
+      // allow req with no origin like mobile apps or curls
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     exposedHeaders: ["X-Total-Count"],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -59,7 +58,7 @@ server.use(
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI,
-      // ttl: 14 * 24 * 60 * 60,
+      ttl: 14 * 24 * 60 * 60,
     }),
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
