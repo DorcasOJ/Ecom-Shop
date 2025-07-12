@@ -19,6 +19,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const server = express();
 
+const PORT = process.env.PORT || 4000;
 // connect database
 connectToDB();
 
@@ -79,5 +80,5 @@ server.use("/", OrderRoutes);
 server.use(errorhandler);
 
 server.listen(4000, () => {
-  console.log("server [STARTED] ~ http://localhost: 4000");
+  console.log(`server [STARTED] ~ running on port ${PORT}`);
 });
