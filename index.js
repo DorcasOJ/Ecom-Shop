@@ -23,6 +23,10 @@ const PORT = process.env.PORT || 4000;
 // connect database
 connectToDB();
 
+server.use(express.json());
+server.use(cookieParser());
+server.use(morgan("tiny"));
+
 // change to single origin later
 const allowedOrigins = [process.env.ORIGIN, process.env.ORIGIN2];
 
@@ -43,9 +47,7 @@ server.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-server.use(express.json());
-server.use(cookieParser());
-server.use(morgan("tiny"));
+
 server.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -55,8 +57,8 @@ server.use(
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: process.env.PRODUCTION === "true" ? "None" : "Lax",
-      secure: process.env.PRODUCTION === "true" ? true : false,
+      sameSite: process.env.PRODUCTION == "true" ? "None" : "Lax",
+      secure: process.env.PRODUCTION == "true" ? true : false,
     },
   })
 );
