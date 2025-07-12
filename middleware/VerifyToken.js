@@ -5,10 +5,11 @@ exports.verifyToken = async (req, res, next) => {
   try {
     // extract token from req cookies
     const { token } = req.session;
+
     if (!token) {
-      return res
-        .status(401)
-        .json({ message: `Token missing, please login again. ${req.session}` });
+      return res.status(401).json({
+        message: `Token missing, please login again. ${req.session}`,
+      });
     }
 
     // verify the token

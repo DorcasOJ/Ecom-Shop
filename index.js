@@ -50,6 +50,7 @@ server.use(
 
 server.use(
   session({
+    name: "sid",
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
@@ -57,8 +58,8 @@ server.use(
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: process.env.PRODUCTION == "true" ? "None" : "Lax",
-      secure: process.env.PRODUCTION == "true" ? true : false,
+      sameSite: "Lax",
+      secure: false,
     },
   })
 );
