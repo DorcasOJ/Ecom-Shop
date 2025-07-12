@@ -78,11 +78,9 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     const cred = { ...data };
-    delete cred.confirmPassword;
+    // delete cred.confirmPassword;
     dispatch(loginAsync(cred));
   };
-
-  console.log(status);
 
   return (
     <Stack

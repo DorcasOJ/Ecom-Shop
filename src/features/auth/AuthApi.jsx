@@ -2,7 +2,7 @@ import { Axios } from "../../config/axios";
 
 export const signup = async (cred) => {
   try {
-    const res = await Axios.post("auth/signup", cred);
+    const res = await Axios.post("/auth/signup", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;

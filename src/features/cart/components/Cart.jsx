@@ -117,7 +117,12 @@ export const Cart = ({ checkout }) => {
 
               <Stack flexDirection={"row"} justifyContent={"space-between"}>
                 <Typography>Total</Typography>
-                <Typography>₦{subTotal + SHIPPING + TAXES}</Typography>
+                <Typography>
+                  {new Intl.NumberFormat("en-NG", {
+                    style: "currency",
+                    currency: "NGN",
+                  }).format(subTotal + SHIPPING + TAXES)}
+                </Typography>
               </Stack>
             </Stack>
           ) : (
