@@ -59,8 +59,8 @@ server.use(
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "None",
-      secure: true,
+      sameSite: "Lax",
+      secure: false,
     },
   })
 );
