@@ -21,5 +21,6 @@ exports.getSanitizedAndTokenizedUser = async (user, req) => {
 
   // sending jwt token in the req session
   req.session.token = token;
+  console.log(req.session, "login/signup");
   return secureInfo;
 };

@@ -319,7 +319,7 @@ exports.checkAuth = async (req, res) => {
     if (req.user) {
       const user = await User.findById(req.user._id);
 
-      console.log(req.user);
+      // console.log(req.user);
 
       return res.status(200).json(sanitizeUser(user));
     }

@@ -49,6 +49,7 @@ server.use(
   })
 );
 
+server.set("trust proxy", 1);
 server.use(
   session({
     name: "sid",
@@ -59,8 +60,8 @@ server.use(
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "Lax",
-      secure: false,
+      secure: process.env.PRODUCTION === "true" ? true : false,
+      sameSite: process.env.PRODUCTION === "true" ? "None" : "Lax",
     },
   })
 );
