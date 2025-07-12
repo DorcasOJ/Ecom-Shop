@@ -22,6 +22,10 @@ exports.getByUserId = async (req, res) => {
       user: userId,
     }).populate({ path: "product", populate: { path: "brand" } });
 
+    if (!result) {
+      res.status(400);
+      throw new Error("Cart not found");
+    }
     res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -62,8 +66,6 @@ exports.deleteByUserId = async (req, res) => {
     const { userId } = req.params;
     const result = await Cart.deleteMany({ user: userId });
     res.status(204).json(result);
-
-    res.status(200).json(result);
   } catch (error) {
     console.log(error);
     res.status(500);
