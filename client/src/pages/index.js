@@ -12,6 +12,10 @@ import { OrderSuccessPage } from "./OrderSuccess";
 import { PaymentPage } from "./PaymentPage";
 import { UserOrderPage } from "./UserOrderPage";
 import { UserProfilePage } from "./UserProfilePage";
+import { NotFoundPage } from "./NotFoundPage";
+import { AddProductPage } from "./AddProductPage";
+import { AdminDashboardPage } from "./AdminDashboardPage";
+import { ProductUpdatePage } from "./ProductUpdatePage";
 
 export {
   SignupPage,
@@ -28,4 +32,8 @@ export {
   PaymentPage,
   UserOrderPage,
   UserProfilePage,
+  NotFoundPage,
+  AddProductPage,
+  AdminDashboardPage,
+  ProductUpdatePage,
 };

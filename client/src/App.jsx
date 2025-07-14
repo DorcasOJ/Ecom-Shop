@@ -29,6 +29,10 @@ import {
   PaymentPage,
   UserOrderPage,
   UserProfilePage,
+  NotFoundPage,
+  AddProductPage,
+  AdminDashboardPage,
+  ProductUpdatePage,
 } from "./pages";
 
 function App() {
@@ -73,14 +77,42 @@ function App() {
 
         {loggedInUser?.isAdmin ? (
           // admin routes
-          <Route
-            path="/logout"
-            element={
-              <Protected>
-                <Logout />
-              </Protected>
-            }
-          />
+          <>
+            <Route
+              path="/admin/add-product"
+              element={
+                <Protected>
+                  <AddProductPage />
+                </Protected>
+              }
+            />
+
+            <Route
+              path="/admin/dashboard"
+              element={
+                <Protected>
+                  <AdminDashboardPage />
+                </Protected>
+              }
+            />
+
+            <Route
+              path="/admin/product-update/:id"
+              element={
+                <Protected>
+                  <ProductUpdatePage />
+                </Protected>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Protected>
+                  <AdminDashboardPage />
+                </Protected>
+              }
+            />
+          </>
         ) : (
           <>
             {/* user routes */}
@@ -152,6 +184,7 @@ function App() {
             />
           </>
         )}
+        <Route path="*" element={<NotFoundPage />} />
       </>
     )
   );

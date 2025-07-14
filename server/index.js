@@ -19,8 +19,14 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const server = express();
 
+const PORT = process.env.PORT || 4000;
 // connect database
 connectToDB();
+
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(cookieParser());
+server.use(morgan("tiny"));
 
 // change to single origin later
 const allowedOrigins = [process.env.ORIGIN, process.env.ORIGIN2];
@@ -42,20 +48,23 @@ server.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-server.use(express.json());
-server.use(cookieParser());
-server.use(morgan("tiny"));
+
+server.set("trust proxy", 1);
 server.use(
   session({
+    name: "sid",
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 14 * 24 * 60 * 60,
+    }),
     cookie: {
       maxAge: process.env.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: process.env.PRODUCTION === "true" ? "None" : "Lax",
       secure: process.env.PRODUCTION === "true" ? true : false,
+      sameSite: process.env.PRODUCTION === "true" ? "None" : "Lax",
     },
   })
 );
@@ -79,5 +88,5 @@ server.use("/", OrderRoutes);
 server.use(errorhandler);
 
 server.listen(4000, () => {
-  console.log("server [STARTED] ~ http://localhost: 4000");
+  console.log(`server [STARTED] ~ running on port ${PORT}`);
 });

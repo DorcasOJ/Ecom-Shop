@@ -83,8 +83,6 @@ export const NavBar = ({ isProductList = false }) => {
 
   const settings = [
     { name: "Profile", to: "/" },
-    { name: "Account", to: "/account" },
-    { name: "Dashboard", to: "/dashboard" },
     { name: "Logout", to: "/logout" },
   ];
   return (
@@ -255,7 +253,7 @@ export const NavBar = ({ isProductList = false }) => {
                 ? `${userInfo?.name.toString().split(" ")[0]} `
                 : `Hey👋, ${userInfo?.name || "user"}`}
             </Typography>
-            {loggedInUser.isAdmin && <Button variant="contained">Admin</Button>}
+            {/* {loggedInUser.isAdmin && <Button variant="contained">Admin</Button>} */}
           </Box>
 
           <Box>

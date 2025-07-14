@@ -2,7 +2,6 @@ const { constants } = require("../constants");
 
 exports.errorhandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
-
   // res.json({ message: err.message, stack: err.stack, statusCode: statusCode });
 
   switch (statusCode) {

@@ -327,17 +327,35 @@ export const ProductDetails = () => {
                               key={index}
                               style={{ width: "100%", height: "100%" }}
                             >
-                              <Box
+                              {/* <Box
                                 component="img"
                                 sx={{
                                   width: "100%",
                                   objectFit: "contain",
-                                  // overflow: "hidden",
+                                  overflow: "hidden",
                                   aspectRatio: 1 / 1,
                                 }}
-                                src={image}
+                                src={product.images[index]}
                                 alt={product?.title}
-                              />
+                              /> */}
+
+                              <Box
+                                sx={{
+                                  width: "100%",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                <img
+                                  src={product.images[index]}
+                                  alt={product?.title}
+                                  style={{
+                                    width: "100%",
+                                    objectFit: "contain",
+                                    overflow: "hidden",
+                                    aspectRatio: 1 / 1,
+                                  }}
+                                />
+                              </Box>
                             </div>
                           ))}
                         </div>
