@@ -2,7 +2,7 @@ import { Axios } from "../../config/axios";
 
 export const signup = async (cred) => {
   try {
-    const res = await Axios.post("auth/signup", cred);
+    const res = await Axios.post("/auth/signup", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -11,7 +11,7 @@ export const signup = async (cred) => {
 
 export const login = async (cred) => {
   try {
-    const res = await Axios.post("auth/login", cred);
+    const res = await Axios.post("/auth/login", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -20,7 +20,7 @@ export const login = async (cred) => {
 
 export const verifyOtp = async (cred) => {
   try {
-    const res = await Axios.post("auth/verify-otp", cred);
+    const res = await Axios.post("/auth/verify-otp", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -29,7 +29,7 @@ export const verifyOtp = async (cred) => {
 
 export const resendOtp = async (cred) => {
   try {
-    const res = await Axios.post("auth/resend-otp", cred);
+    const res = await Axios.post("/auth/resend-otp", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -38,7 +38,7 @@ export const resendOtp = async (cred) => {
 
 export const forgotPassword = async (cred) => {
   try {
-    const res = await Axios.post("auth/forgot-password", cred);
+    const res = await Axios.post("/auth/forgot-password", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -47,7 +47,7 @@ export const forgotPassword = async (cred) => {
 
 export const resetPassword = async (cred) => {
   try {
-    const res = await Axios.post("auth/reset-password", cred);
+    const res = await Axios.post("/auth/reset-password", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -56,7 +56,7 @@ export const resetPassword = async (cred) => {
 
 export const checkAuth = async (cred) => {
   try {
-    const res = await Axios.get("auth/check-auth", cred);
+    const res = await Axios.get("/auth/check-auth", cred);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -65,7 +65,7 @@ export const checkAuth = async (cred) => {
 
 export const logout = async () => {
   try {
-    const res = await Axios.get("auth/logout", {
+    const res = await Axios.get("/auth/logout", {
       withCredentials: true,
     });
     return res.data;

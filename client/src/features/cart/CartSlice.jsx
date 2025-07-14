@@ -5,7 +5,7 @@ import {
   getCartByUserId,
   resetCartByUserId,
   updateCartItemById,
-} from "./cartApi";
+} from "./CartApi";
 
 const initialState = {
   status: "idle",

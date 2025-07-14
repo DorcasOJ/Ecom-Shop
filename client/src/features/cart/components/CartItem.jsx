@@ -128,13 +128,16 @@ export const CartItem = ({
         alignItems={"flex-end"}
       >
         <Typography variant="body2">₦{price}</Typography>
-        <Button
-          size={is480 ? "small" : ""}
-          onClick={handleProductRemove}
-          variant="contained"
-        >
-          Remove
-        </Button>
+
+        {!checkout && (
+          <Button
+            size={is480 ? "small" : ""}
+            onClick={handleProductRemove}
+            variant="contained"
+          >
+            Remove
+          </Button>
+        )}
       </Stack>
     </Stack>
   );

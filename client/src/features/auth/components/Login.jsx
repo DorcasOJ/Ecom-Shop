@@ -72,13 +72,12 @@ export const Login = () => {
     }
     return () => {
       dispatch(clearLoginError());
-      dispatch(resetLoginStatus());
+      // dispatch(resetLoginStatus());
     };
   }, [status]);
 
   const onSubmit = (data) => {
     const cred = { ...data };
-    delete cred.confirmPassword;
     dispatch(loginAsync(cred));
   };
 

@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/AuthSlice";
-import { addToCartAsync, selectCartItems } from "../../cart/CartSlice";
+import {
+  addToCartAsync,
+  resetCartItemAddStatus,
+  selectCartItems,
+} from "../../cart/CartSlice";
 import { useTheme } from "@emotion/react";
 import {
   Checkbox,
@@ -16,6 +20,7 @@ import { selectWishlists } from "../../wishlist/WishlistSlice";
 import { FavoriteBorder } from "@mui/icons-material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export const ProductCard = ({
   id,
@@ -43,7 +48,6 @@ export const ProductCard = ({
   const is608 = useMediaQuery(theme.breakpoints.down(608));
   const is488 = useMediaQuery(theme.breakpoints.down(488));
   const is408 = useMediaQuery(theme.breakpoints.down(408));
-
   isProductALreadyInWishlist = wishListItems.some(
     (item) => item.product?._id === id
   );
@@ -57,6 +61,12 @@ export const ProductCard = ({
     const data = { user: loggedInUser?._id, product: id };
     dispatch(addToCartAsync(data));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCartItemAddStatus());
+    };
+  });
 
   return (
     <>

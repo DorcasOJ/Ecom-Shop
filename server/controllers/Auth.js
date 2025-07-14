@@ -3,7 +3,7 @@ const Otp = require("../models/OTP");
 const { generateToken } = require("../utils/GenerateToken");
 const {
   getSanitizedAndTokenizedUser,
-} = require("../utils/getSanitizedAndTokenizedUser");
+} = require("../utils/GetSanitizedAndTokenizedUser");
 
 const { sanitizeUser } = require("../utils/SanitizeUser");
 const bcrypt = require("bcryptjs");
@@ -59,7 +59,6 @@ exports.login = async (req, res) => {
           existingUser,
           req
         );
-
         return res.status(200).json(securedInfo);
       } else {
         res.clearCookie("token");
@@ -319,7 +318,7 @@ exports.checkAuth = async (req, res) => {
     if (req.user) {
       const user = await User.findById(req.user._id);
 
-      console.log(req.user);
+      // console.log(req.user);
 
       return res.status(200).json(sanitizeUser(user));
     }

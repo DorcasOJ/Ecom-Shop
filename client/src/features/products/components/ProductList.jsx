@@ -99,8 +99,6 @@ export const ProductList = () => {
   const [sort, setSort] = useState("");
   const theme = useTheme();
 
-  // console.log(filters, "filters");
-
   const is1200 = useMediaQuery(theme.breakpoints.down(1200));
   const is800 = useMediaQuery(theme.breakpoints.down(800));
   const is700 = useMediaQuery(theme.breakpoints.down(700));
@@ -217,7 +215,6 @@ export const ProductList = () => {
   }, [productFetchStatus]);
 
   useEffect(() => {
-
     return () => {
       dispatch(resetProductFetchStatus());
       dispatch(resetWishlistItemAddStatus());
