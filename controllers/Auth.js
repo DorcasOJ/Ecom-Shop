@@ -59,7 +59,6 @@ exports.login = async (req, res) => {
           existingUser,
           req
         );
-
         return res.status(200).json(securedInfo);
       } else {
         res.clearCookie("token");
