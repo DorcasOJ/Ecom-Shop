@@ -78,7 +78,6 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     const cred = { ...data };
-    // delete cred.confirmPassword;
     dispatch(loginAsync(cred));
   };
 

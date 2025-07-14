@@ -2,7 +2,7 @@ import { Axios } from "../../config/axios";
 
 export const addProduct = async (data) => {
   try {
-    const res = await Axios.post("/products", data);
+    const res = await Axios.post(`/product/create/${data.user}`, data);
     return res.data;
   } catch (error) {
     throw error.response.data;
@@ -76,7 +76,8 @@ export const updateProductById = async (update) => {
 export const undeleteProductById = async (body) => {
   try {
     const res = await Axios.put(
-      `/product/restore-product/${body._id}/${body.userId}`
+      `/product/restore-product/${body.productId}/${body.userId}`,
+      body
     );
     return res;
   } catch (error) {
@@ -89,7 +90,8 @@ export const undeleteProductById = async (body) => {
 export const deleteProductById = async (body) => {
   try {
     const res = await Axios.put(
-      `/product/delete-product/${body._id}/${body.userId}`
+      `/product/delete-product/${body.productId}/${body.userId}`,
+      body
     );
     return res.data;
   } catch (error) {

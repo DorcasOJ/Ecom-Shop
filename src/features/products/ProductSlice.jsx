@@ -54,8 +54,8 @@ export const fetchProductsAsync = createAsyncThunk(
 export const fetchProductByIdAsync = createAsyncThunk(
   "products/fetchProductByIdAsync",
   async (id) => {
-    const selectProduct = await fetchProductById(id);
-    return selectProduct;
+    const selectedProduct = await fetchProductById(id);
+    return selectedProduct;
   }
 );
 
@@ -352,11 +352,11 @@ export const selectSelectedProduct = (state) =>
   state.ProductSlice.selectedProduct;
 export const selectProductErrors = (state) => state.ProductSlice.errors;
 
-export const selectProduct = (state) => state.ProductSlice.selectProduct;
+// export const selectProduct = (state) => state.ProductSlice.selectProduct;
 export const selectProductSuccessMessage = (state) =>
   state.ProductSlice.successMessage;
 
-export const selectProductUpdate = (state) =>
+export const selectProductUpdateState = (state) =>
   state.ProductSlice.productUpdateStatus;
 export const selectProductAddStatus = (state) =>
   state.ProductSlice.productAddStatus;
