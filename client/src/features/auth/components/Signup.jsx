@@ -77,9 +77,7 @@ export const Signup = () => {
 
   useEffect(() => {
     if (status === "fulfilled") {
-      toast.success(
-        "Welcome! Verify your email to start shopping on mern-ecommerce"
-      );
+      toast.success("Welcome! Verify your email to start shopping on Buy Now");
       reset();
     }
     return () => {
@@ -113,7 +111,7 @@ export const Signup = () => {
               sx={{ wordBreak: "break-word" }}
               fontWeight={600}
             >
-              Ecom Shop
+              Buy Now
             </Typography>
 
             <Typography
