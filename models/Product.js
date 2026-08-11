@@ -50,11 +50,11 @@ const productSchema = new Schema(
       default: false,
     },
 
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      required: true,
-    },
+    // user: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "user",
+    //   required: true,
+    // },
   },
   {
     timestamps: true,

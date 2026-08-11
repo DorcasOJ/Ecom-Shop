@@ -3,6 +3,9 @@ const router = express.Router();
 const authController = require("../controllers/Auth");
 const { verifyToken } = require("../middleware/VerifyToken");
 
+router.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Auth route is working" });
+});
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 router.post("/verify-otp", authController.verifyOtp);

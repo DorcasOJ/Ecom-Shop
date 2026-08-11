@@ -17,6 +17,7 @@ router
   .get("/products", productController.getAll)
   .get("/product/:productId", productController.read)
   .put("/product/update/:productId/:userId", productController.update)
+  
   .put(
     "/product/delete-image/:productId/:userId",
     verifyToken,
@@ -24,6 +25,7 @@ router
     isAdmin,
     productController.removeProductImage
   )
+
   .put(
     "/product/delete-product/:productId/:userId",
     verifyToken,
@@ -31,6 +33,7 @@ router
     isAdmin,
     productController.deleteById
   )
+
   .put(
     "/product/restore-product/:productId/:userId",
     verifyToken,
