@@ -26,6 +26,7 @@ exports.signup = async (req, res) => {
       // hashing password
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       req.body.password = hashedPassword;
+      req.body.isVerified = true;
 
       // create user
       const createdUser = new User(req.body);
@@ -50,14 +51,14 @@ exports.login = async (req, res) => {
 
       const comparedPassword = await bcrypt.compare(
         req.body.password,
-        existingUser.password
+        existingUser.password,
       );
 
       if (existingUser && comparedPassword) {
         console.log("tokenizing user...");
         const securedInfo = await getSanitizedAndTokenizedUser(
           existingUser,
-          req
+          req,
         );
         return res.status(200).json(existingUser);
       } else {
@@ -70,7 +71,7 @@ exports.login = async (req, res) => {
     console.log(error);
     res.status(500);
     throw new Error(
-      `${error}. Some error occurred while logging in, please try again later`
+      `${error}. Some error occurred while logging in, please try again later`,
     );
   }
 };
@@ -110,7 +111,7 @@ exports.verifyOtp = async (req, res) => {
       const verifiedUser = await User.findByIdAndUpdate(
         isValidUserId._id,
         { isVerified: true },
-        { new: true }
+        { new: true },
       );
       return res.status(200).json(sanitizeUser(verifiedUser));
     }
@@ -147,8 +148,8 @@ exports.resendOtp = async (req, res) => {
 
     await sendMail(
       existingUser.email,
-      `OTP Verification for your ECOM Account`,
-      `Your one-Time Password (OTP) for account verification is: <b>${otp}</b>.</br>Do not share this OTP with anyone for security reasons`
+      `OTP Verification for your BUY NOW Account`,
+      `Your one-Time Password (OTP) for account verification is: <b>${otp}</b>.</br>Do not share this OTP with anyone for security reasons`,
     );
 
     res.status(201).json({ message: "OTP sent" });
@@ -191,16 +192,16 @@ exports.forgotPassword = async (req, res) => {
     });
     await newToken.save();
     console.log(
-      `${process.env.ORIGIN}/reset-password/${isExistingUser._id}/${resetToken}`
+      `${process.env.ORIGIN}/reset-password/${isExistingUser._id}/${resetToken}`,
     );
 
     // send password reset link to user's email
 
     await sendMail(
       isExistingUser.email,
-      `Password Reset Lin for you ECOM Account`,
+      `Password Reset Link for your BUY NOW Account`,
       `<p>Dear ${isExistingUser?.name},
-        We received a request to reset the password for your ECOM account.
+        We received a request to reset the password for your BUY NOW account.
         If you initiated this request, please use the following link to reset your password:</p>
 
         <p>
@@ -211,9 +212,9 @@ exports.forgotPassword = async (req, res) => {
         This link is valid for a limited time. If you did not request a password reset, please ignore this email. Your account security is important to us.
 
         Thank you,
-        The ECOM Team
+        The Buy Now Team
         </p>
-        `
+        `,
     );
 
     res.status(200).json({
@@ -261,7 +262,7 @@ exports.resetPassword = async (req, res) => {
     // if token exist and it's not expired and matches hash
     const compareToken = await bcrypt.compare(
       req.body.token,
-      isResetTokenExisting.token
+      isResetTokenExisting.token,
     );
 
     if (
@@ -334,7 +335,7 @@ exports.makeUserAdmin = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { $set: { isAdmin: true } },
-      { new: true }
+      { new: true },
     ).exec();
     res.status(200).json(sanitizeUser(user));
   } else {
