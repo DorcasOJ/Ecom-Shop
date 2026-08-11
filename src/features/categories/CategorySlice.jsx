@@ -179,7 +179,7 @@ const categorySlice = createSlice({
       .addCase(deleteCategoryAsync.fulfilled, (state, action) => {
         state.status = "fulfilled";
         state.categories = state.categories.filter(
-          (category) => category._id === action.payload._id
+          (category) => category._id !== action.payload._id
         );
       })
 
