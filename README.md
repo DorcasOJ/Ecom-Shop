@@ -1,4 +1,4 @@
-## This is an Ecom Application
+## This is an Buy Now Application
 
 # Built with React, Redux, Material UI, Express and MongoDB
 
@@ -15,4 +15,4 @@
 
 # Live Link
 
-[Live](https://oj-store.netlify.app/login)
+[Live](https://oj-store.netlify.app/)

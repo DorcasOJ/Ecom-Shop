@@ -146,7 +146,6 @@ export const ProductList = () => {
   const handleFilterClose = () => {
     dispatch(toggleFilters());
   };
-  // console.log(products, totalResults);
 
   const handleAddRemoveFromWishlist = (e, productId) => {
     if (e.target.checked) {

@@ -14,7 +14,6 @@ import { useAuthCheck } from "./hooks/useAuth/useAuthCheck";
 import { useFetchLoggedInUserDetails } from "./hooks/useAuth/useFetchLoggedInUserDetails";
 import { Protected } from "./features/auth/components/Protected";
 import { Logout } from "./features/auth/components/Logout";
-
 import {
   LoginPage,
   OtpVerificationPage,
@@ -185,8 +184,8 @@ function App() {
           </>
         )}
         <Route path="*" element={<NotFoundPage />} />
-      </>
-    )
+      </>,
+    ),
   );
   return <RouterProvider router={routes} />;
 }

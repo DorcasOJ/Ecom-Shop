@@ -1,0 +1,1857 @@
+const Product = require("../models/Product");
+
+const products = [
+  {
+    _id: "65a7e45902e12c44f599444e",
+    title: "iPhone 9",
+    description: "An apple mobile which is nothing like apple",
+    price: 549,
+    discountPercentage: 12.96,
+    stockQuantity: 14,
+    brand: "65a7e20102e12c44f59943da",
+    category: "65a7e24602e12c44f599442c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1616410011236-7a42121dd981?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=781&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599444f",
+    title: "Fog Scent Xpressio Perfume custom",
+    description:
+      "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
+    price: 13,
+    discountPercentage: 8.14,
+    stockQuantity: 21,
+    brand: "65a7e20102e12c44f59943e3",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+    stockQuantityQuantity: 5,
+  },
+  {
+    _id: "65a7e45902e12c44f5994450",
+    title: "Samsung Universe 9",
+    description:
+      "Samsung's new variant which goes beyond Galaxy to the Universe",
+    price: 1249,
+    discountPercentage: 15.46,
+    stockQuantity: 36,
+    brand: "65a7e20102e12c44f59943db",
+    category: "65a7e24602e12c44f599442c",
+    thumbnail:
+      "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994451",
+    title: "OPPOF19",
+    description: "OPPO F19 is officially announced on April 2021.",
+    price: 280,
+    discountPercentage: 17.91,
+    stockQuantity: 123,
+    brand: "65a7e20102e12c44f59943dc",
+    category: "65a7e24602e12c44f599442c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1620917669809-1af0497965de?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1620917669809-1af0497965de?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      // "https://cdn.dummyjson.com/product-images/4/1.jpg",
+      // "https://cdn.dummyjson.com/product-images/4/2.jpg",
+      // "https://cdn.dummyjson.com/product-images/4/3.jpg",
+      // "https://cdn.dummyjson.com/product-images/4/4.jpg",
+      // "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994452",
+    title: "Huawei P30",
+    description:
+      "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+    price: 499,
+    discountPercentage: 10.58,
+    stockQuantity: 32,
+    brand: "65a7e20102e12c44f59943dd",
+    category: "65a7e24602e12c44f599442c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994453",
+    title: "MacBook Pro",
+    description:
+      "MacBook Pro 2021 with mini-LED display may launch between September, November",
+    price: 1749,
+    discountPercentage: 11.02,
+    stockQuantity: 83,
+    brand: "65a7e20102e12c44f59943da",
+    category: "65a7e24602e12c44f599442d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994454",
+    title: "Samsung Galaxy Book",
+    description:
+      "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+    price: 1499,
+    discountPercentage: 4.15,
+    stockQuantity: 50,
+    brand: "65a7e20102e12c44f59943db",
+    category: "65a7e24602e12c44f599442d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994455",
+    title: "Microsoft Surface Laptop 4",
+    description:
+      "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+    price: 1499,
+    discountPercentage: 10.23,
+    stockQuantity: 68,
+    brand: "65a7e20102e12c44f59943de",
+    category: "65a7e24602e12c44f599442d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1556227834-09f1de7a7d14?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1556227834-09f1de7a7d14?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1640890959827-6307611b34a1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994456",
+    title: "Infinix INBOOK",
+    description:
+      "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+    price: 1099,
+    discountPercentage: 11.83,
+    stockQuantity: 96,
+    brand: "65a7e20102e12c44f59943df",
+    category: "65a7e24602e12c44f599442d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994457",
+    title: "HP Pavilion 15-DK1056WM",
+    description:
+      "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+    price: 1099,
+    discountPercentage: 6.18,
+    stockQuantity: 89,
+    brand: "65a7e20102e12c44f59943e0",
+    category: "65a7e24602e12c44f599442d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994458",
+    title: "perfume Oil",
+    description:
+      "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
+    price: 13,
+    discountPercentage: 8.4,
+    stockQuantity: 65,
+    brand: "65a7e20102e12c44f59943e1",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1543422655-ac1c6ca993ed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1543422655-ac1c6ca993ed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994459",
+    title: "Brown Perfume",
+    description: "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
+    price: 40,
+    discountPercentage: 15.66,
+    stockQuantity: 52,
+    brand: "65a7e20102e12c44f59943e2",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445a",
+    title: "Fog Scent Xpressio Perfume",
+    description:
+      "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
+    price: 13,
+    discountPercentage: 8.14,
+    stockQuantity: 61,
+    brand: "65a7e20102e12c44f59943e3",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1622618991746-fe6004db3a47?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1622618991746-fe6004db3a47?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445b",
+    title: "Non-Alcoholic Concentrated Perfume Oil",
+    description:
+      "Original Al Munakh® by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil",
+    price: 120,
+    discountPercentage: 15.6,
+    stockQuantity: 114,
+    brand: "65a7e20102e12c44f59943e4",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1593487568720-92097fb460fb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1593487568720-92097fb460fb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445c",
+    title: "Eau De Perfume Spray",
+    description:
+      "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+    price: 30,
+    discountPercentage: 10.99,
+    stockQuantity: 105,
+    brand: "65a7e20102e12c44f59943e5",
+    category: "65a7e24602e12c44f599442e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445d",
+    title: "Hyaluronic Acid Serum",
+    description:
+      "L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid",
+    price: 19,
+    discountPercentage: 13.31,
+    stockQuantity: 110,
+    brand: "65a7e20102e12c44f59943e6",
+    category: "65a7e24602e12c44f599442f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1713768704571-6aeb0d0e5105?q=80&w=692&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1713768704571-6aeb0d0e5105?q=80&w=692&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445e",
+    title: "Tree Oil 30ml",
+    description:
+      "Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,",
+    price: 12,
+    discountPercentage: 4.09,
+    stockQuantity: 78,
+    brand: "65a7e20102e12c44f59943e7",
+    category: "65a7e24602e12c44f599442f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599445f",
+    title: "Oil Free Moisturizer 100ml",
+    description:
+      "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
+    price: 40,
+    discountPercentage: 13.1,
+    stockQuantity: 88,
+    brand: "65a7e20102e12c44f59943e8",
+    category: "65a7e24602e12c44f599442f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994460",
+    title: "Skin Beauty Serum.",
+    description:
+      "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m",
+    price: 46,
+    discountPercentage: 10.68,
+    stockQuantity: 54,
+    brand: "65a7e20102e12c44f59943e9",
+    category: "65a7e24602e12c44f599442f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1679394270822-fb37412bb6ee?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1679394270822-fb37412bb6ee?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1627811015433-368c148f6c3c?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994461",
+    title: "Freckle Treatment Cream- 15gm",
+    description:
+      "Fair & Clear is Pakistan's only pure Freckle cream which helpsfade Freckles, Darkspots and pigments. Mercury level is 0%, so there are no side effects.",
+    price: 70,
+    discountPercentage: 16.99,
+    stockQuantity: 140,
+    brand: "65a7e20102e12c44f59943ea",
+    category: "65a7e24602e12c44f599442f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1615396899839-c99c121888b0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1615396899839-c99c121888b0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1672062519629-abe610383152?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994462",
+    title: "Daal Masoor 500 grams",
+    description: "Fine quality Branded Product Keep in a cool and dry place",
+    price: 20,
+    discountPercentage: 4.81,
+    stockQuantity: 133,
+    brand: "65a7e20102e12c44f59943eb",
+    category: "65a7e24602e12c44f5994430",
+    thumbnail:
+      "https://images.unsplash.com/photo-1585652757173-57de5e9fab42?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1585652757173-57de5e9fab42?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994463",
+    title: "Elbow Macaroni - 400 gm",
+    description: "Product details of Bake Parlor Big Elbow Macaroni - 400 gm",
+    price: 14,
+    discountPercentage: 15.58,
+    stockQuantity: 146,
+    brand: "65a7e20102e12c44f59943ec",
+    category: "65a7e24602e12c44f5994430",
+    thumbnail:
+      "https://images.unsplash.com/photo-1590060846796-0418842f3908?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1590060846796-0418842f3908?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1607546965882-e025ff0edc61?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1543339520-51ebace10a0a?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994464",
+    title: "Orange Essence Food Flavour",
+    description:
+      "Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item",
+    price: 14,
+    discountPercentage: 8.04,
+    stockQuantity: 26,
+    brand: "65a7e20102e12c44f59943ed",
+    category: "65a7e24602e12c44f5994430",
+    thumbnail:
+      "https://images.unsplash.com/photo-1572656306390-40a9fc3899f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGZsYXZvcnxlbnwwfHwwfHx8Mg%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1607977293792-6837f7e98314?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1572656306390-40a9fc3899f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGZsYXZvcnxlbnwwfHwwfHx8Mg%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994465",
+    title: "cereals muesli fruit nuts",
+    description:
+      "original fauji cereal muesli 250gm box pack original fauji cereals muesli fruit nuts flakes breakfast cereal break fast faujicereals cerels cerel foji fouji",
+    price: 46,
+    discountPercentage: 16.8,
+    stockQuantity: 113,
+    brand: "65a7e20102e12c44f59943ee",
+    category: "65a7e24602e12c44f5994430",
+    thumbnail:
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1543208541-0961a29a8c3d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994466",
+    title: "Gulab Powder 50 Gram",
+    description: "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds",
+    price: 70,
+    discountPercentage: 13.58,
+    stockQuantity: 47,
+    brand: "65a7e20102e12c44f59943ef",
+    category: "65a7e24602e12c44f5994430",
+    thumbnail:
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1693996045463-6ea86d10a2e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994467",
+    title: "Plant Hanger For Home",
+    description:
+      "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf",
+    price: 41,
+    discountPercentage: 17.86,
+    stockQuantity: 131,
+    brand: "65a7e20102e12c44f59943f0",
+    category: "65a7e24602e12c44f5994431",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994468",
+    title: "Flying Wooden Bird",
+    description:
+      "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
+    price: 51,
+    discountPercentage: 15.58,
+    stockQuantity: 17,
+    brand: "65a7e20102e12c44f59943f1",
+    category: "65a7e24602e12c44f5994431",
+    thumbnail:
+      "https://images.unsplash.com/photo-1611930021592-a8cfd5319ceb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1611930021592-a8cfd5319ceb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994469",
+    title: "3D Embellishment Art Lamp",
+    description:
+      "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
+    price: 20,
+    discountPercentage: 16.49,
+    stockQuantity: 54,
+    brand: "65a7e20102e12c44f59943f2",
+    category: "65a7e24602e12c44f5994431",
+    thumbnail:
+      "https://images.unsplash.com/photo-1693168045046-9a4b4f30f1c7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1693168045046-9a4b4f30f1c7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446a",
+    title: "Handcraft Chinese style",
+    description:
+      "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
+    price: 60,
+    discountPercentage: 15.34,
+    stockQuantity: 7,
+    brand: "65a7e20102e12c44f59943f3",
+    category: "65a7e24602e12c44f5994431",
+    thumbnail:
+      "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446b",
+    title: "Key Holder",
+    description:
+      "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
+    price: 30,
+    discountPercentage: 2.92,
+    stockQuantity: 54,
+    brand: "65a7e20102e12c44f59943f4",
+    category: "65a7e24602e12c44f5994431",
+    thumbnail:
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446c",
+    title: "Mornadi Velvet Bed",
+    description:
+      "Mornadi Velvet Bed Base with Headboard Slats Support Classic Style Bedroom Furniture Bed Set",
+    price: 40,
+    discountPercentage: 17,
+    stockQuantity: 140,
+    brand: "65a7e20102e12c44f59943f5",
+    category: "65a7e24602e12c44f5994432",
+    thumbnail:
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446d",
+    title: "Sofa for Coffe Cafe",
+    description:
+      "Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe",
+    price: 50,
+    discountPercentage: 15.59,
+    stockQuantity: 30,
+    brand: "65a7e20102e12c44f59943f6",
+    category: "65a7e24602e12c44f5994432",
+    thumbnail:
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://unsplash.com/photos/shallow-focus-photo-of-black-ray-ban-wayfarer-sunglasses-K62u25Jk6vo",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8fDA%3D",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8fDA%3D",
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446e",
+    title: "3 Tier Corner Shelves",
+    description:
+      "3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf",
+    price: 700,
+    discountPercentage: 17,
+    stockQuantity: 106,
+    brand: "65a7e20102e12c44f59943f7",
+    category: "65a7e24602e12c44f5994432",
+    thumbnail:
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1613803745799-ba6c10aace85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599446f",
+    title: "Plastic Table",
+    description:
+      "V﻿ery good quality plastic table for multi purpose now in reasonable price",
+    price: 50,
+    discountPercentage: 4,
+    stockQuantity: 136,
+    brand: "65a7e20102e12c44f59943f8",
+    category: "65a7e24602e12c44f5994432",
+    thumbnail:
+      "https://images.unsplash.com/photo-1631214499500-2e34edcaccfe?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1631214499500-2e34edcaccfe?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994470",
+    title: "3 DOOR PORTABLE",
+    description:
+      "Material: Stainless Steel and Fabric  Item Size: 110 cm x 45 cm x 175 cm Package Contents: 1 Storage Wardrobe",
+    price: 41,
+    discountPercentage: 7.98,
+    stockQuantity: 68,
+    brand: "65a7e20102e12c44f59943f9",
+    category: "65a7e24602e12c44f5994432",
+    thumbnail:
+      "https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994471",
+    title: "Sleeve Shirt Womens",
+    description:
+      "Cotton Solid Color Professional Wear Sleeve Shirt Womens Work Blouses Wholesale Clothing Casual Plain Custom Top OEM Customized",
+    price: 90,
+    discountPercentage: 10.89,
+    stockQuantity: 39,
+    brand: "65a7e20102e12c44f59943fa",
+    category: "65a7e24602e12c44f5994433",
+    thumbnail:
+      "https://images.unsplash.com/photo-1618354691551-44de113f0164?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1618354691551-44de113f0164?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg",
+      "https://images.unsplash.com/photo-1487611788822-148850a5ebc1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994472",
+    title: "ank Tops for Womens/Girls",
+    description:
+      "PACK OF 3 CAMISOLES ,VERY COMFORTABLE SOFT COTTON STUFF, COMFORTABLE IN ALL FOUR SEASONS",
+    price: 50,
+    discountPercentage: 12.05,
+    stockQuantity: 107,
+    brand: "65a7e20102e12c44f59943fb",
+    category: "65a7e24602e12c44f5994433",
+    thumbnail:
+      "https://images.unsplash.com/photo-1525171254930-643fc658b64e?q=80&w=1077&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1525171254930-643fc658b64e?q=80&w=1077&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994473",
+    title: "sublimation plain kids tank",
+    description: "sublimation plain kids tank tops wholesale",
+    price: 100,
+    discountPercentage: 11.12,
+    stockQuantity: 20,
+    brand: "65a7e20102e12c44f59943fb",
+    category: "65a7e24602e12c44f5994433",
+    thumbnail:
+      "https://images.unsplash.com/photo-1598460880248-71ec6d2d582b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1598460880248-71ec6d2d582b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994474",
+    title: "Women Sweaters Wool",
+    description:
+      "2021 Custom Winter Fall Zebra Knit Crop Top Women Sweaters Wool Mohair Cos Customize Crew Neck Women' S Crop Top Sweater",
+    price: 600,
+    discountPercentage: 17.2,
+    stockQuantity: 55,
+    brand: "65a7e20102e12c44f59943fc",
+    category: "65a7e24602e12c44f5994433",
+    thumbnail:
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994475",
+    title: "women winter clothes",
+    description:
+      "women winter clothes thick fleece hoodie top with sweat pantjogger women sweatsuit set joggers pants two piece pants set",
+    price: 57,
+    discountPercentage: 13.39,
+    stockQuantity: 84,
+    brand: "65a7e20102e12c44f59943fc",
+    category: "65a7e24602e12c44f5994433",
+    thumbnail:
+      "https://images.unsplash.com/photo-1649433911119-7cf48b3e8f50?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1649433911119-7cf48b3e8f50?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994476",
+    title: "NIGHT SUIT",
+    description: "NIGHT SUIT RED MICKY MOUSE..  For Girls. Fantastic Suits.",
+    price: 55,
+    discountPercentage: 15.05,
+    stockQuantity: 21,
+    brand: "65a7e20102e12c44f59943fd",
+    category: "65a7e24602e12c44f5994434",
+    thumbnail:
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994477",
+    title: "Stiched Kurta plus trouser",
+    description:
+      "FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN",
+    price: 80,
+    discountPercentage: 15.37,
+    stockQuantity: 148,
+    brand: "65a7e20102e12c44f59943fe",
+    category: "65a7e24602e12c44f5994434",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994478",
+    title: "frock gold printed",
+    description:
+      "Ghazi fabric long frock gold printed ready to wear stitched collection (G992)",
+    price: 600,
+    discountPercentage: 15.55,
+    stockQuantity: 150,
+    brand: "65a7e20102e12c44f59943ff",
+    category: "65a7e24602e12c44f5994434",
+    thumbnail:
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1577058109956-67adf6edc586?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994479",
+    title: "Ladies Multicolored Dress",
+    description:
+      "This classy shirt for women gives you a gorgeous look on everyday wear and specially for semi-casual wears.",
+    price: 79,
+    discountPercentage: 16.88,
+    stockQuantity: 2,
+    brand: "65a7e20102e12c44f59943ff",
+    category: "65a7e24602e12c44f5994434",
+    thumbnail:
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447a",
+    title: "Malai Maxi Dress",
+    description:
+      "Ready to wear, Unique design according to modern standard fashion, Best fitting ,Imported stuff",
+    price: 50,
+    discountPercentage: 5.07,
+    stockQuantity: 96,
+    brand: "65a7e20102e12c44f5994400",
+    category: "65a7e24602e12c44f5994434",
+    thumbnail:
+      "https://images.unsplash.com/flagged/photo-1585052201332-b8c0ce30972f?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/flagged/photo-1585052201332-b8c0ce30972f?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447b",
+    title: "women's shoes",
+    description:
+      "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber",
+    price: 40,
+    discountPercentage: 16.96,
+    stockQuantity: 72,
+    brand: "65a7e20102e12c44f5994401",
+    category: "65a7e24602e12c44f5994435",
+    thumbnail:
+      "https://images.unsplash.com/photo-1632761298168-1b8615e4c3ec?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1601924638867-3a6de6b7a500?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1632761298168-1b8615e4c3ec?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1585059895926-5e3be4d7c385?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447c",
+    title: "Sneaker shoes",
+    description:
+      "Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women",
+    price: 120,
+    discountPercentage: 10.37,
+    stockQuantity: 50,
+    brand: "65a7e20102e12c44f5994402",
+    category: "65a7e24602e12c44f5994435",
+    thumbnail:
+      "https://images.unsplash.com/photo-1699595749116-33a4a869503c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1620114884229-65d21f8c9423?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1699595749116-33a4a869503c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447d",
+    title: "Women Strip Heel",
+    description:
+      "Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped",
+    price: 40,
+    discountPercentage: 10.83,
+    stockQuantity: 25,
+    brand: "65a7e20102e12c44f5994403",
+    category: "65a7e24602e12c44f5994435",
+    thumbnail:
+      "https://images.unsplash.com/photo-1603213060868-fc57c78f4c84?q=80&w=769&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1603213060868-fc57c78f4c84?q=80&w=769&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447e",
+    title: "Chappals & Shoe Ladies Metallic",
+    description:
+      "Womens Chappals & Shoe Ladies Metallic Tong Thong Sandal Flat Summer 2020 Maasai Sandals",
+    price: 23,
+    discountPercentage: 2.62,
+    stockQuantity: 107,
+    brand: "65a7e20102e12c44f5994404",
+    category: "65a7e24602e12c44f5994435",
+    thumbnail:
+      "https://images.unsplash.com/photo-1603487742131-4160ec999306?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1603487742131-4160ec999306?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599447f",
+    title: "Women Shoes",
+    description:
+      "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes",
+    price: 36,
+    discountPercentage: 16.87,
+    stockQuantity: 46,
+    brand: "65a7e20102e12c44f5994405",
+    category: "65a7e24602e12c44f5994435",
+    thumbnail:
+      "https://images.unsplash.com/photo-1632761298168-1b8615e4c3ec?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dpg",
+    images: [
+      "https://images.unsplash.com/photo-1632761298168-1b8615e4c3ec?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994480",
+    title: "half sleeves T shirts",
+    description:
+      "Many store is creating new designs and trend every month and every year. Daraz.pk have a beautiful range of men fashion brands",
+    price: 23,
+    discountPercentage: 12.76,
+    stockQuantity: 132,
+    brand: "65a7e20102e12c44f5994406",
+    category: "65a7e24602e12c44f5994436",
+    thumbnail:
+      "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994481",
+    title: "FREE FIRE T Shirt",
+    description:
+      "quality and professional print - It doesn't just look high quality, it is high quality.",
+    price: 10,
+    discountPercentage: 14.72,
+    stockQuantity: 128,
+    brand: "65a7e20102e12c44f5994407",
+    category: "65a7e24602e12c44f5994436",
+    thumbnail:
+      "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dpg",
+    images: [
+      "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994482",
+    title: "printed high quality T shirts",
+    description: "Brand: vintage Apparel ,Export quality",
+    price: 35,
+    discountPercentage: 7.54,
+    stockQuantity: 6,
+    brand: "65a7e20102e12c44f5994406",
+    category: "65a7e24602e12c44f5994436",
+    thumbnail:
+      "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994483",
+    title: "Pubg Printed Graphic T-Shirt",
+    description:
+      "Product Description Features: 100% Ultra soft Polyester Jersey. Vibrant & colorful printing on front. Feels soft as cotton without ever cracking",
+    price: 46,
+    discountPercentage: 16.44,
+    stockQuantity: 136,
+    brand: "65a7e20102e12c44f5994408",
+    category: "65a7e24602e12c44f5994436",
+    thumbnail:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994484",
+    title: "Money Heist Printed Summer T Shirts",
+    description: "Fabric Jercy, Size: M & L Wear Stylish Dual Stiched",
+    price: 66,
+    discountPercentage: 15.97,
+    stockQuantity: 122,
+    brand: "65a7e20102e12c44f5994408",
+    category: "65a7e24602e12c44f5994436",
+    thumbnail:
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994485",
+    title: "Sneakers Joggers Shoes",
+    description:
+      "Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New",
+    price: 40,
+    discountPercentage: 12.57,
+    stockQuantity: 6,
+    brand: "65a7e20102e12c44f5994409",
+    category: "65a7e24602e12c44f5994437",
+    thumbnail:
+      "https://images.unsplash.com/photo-1692482386532-7a3c6a051144?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1643302214215-46fd832d3c2c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1650320079970-b4ee8f0dae33?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1692482386532-7a3c6a051144?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994486",
+    title: "Loafers for men",
+    description:
+      "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Moccassion - Pure Nylon (Rubber) Expot Quality.",
+    price: 47,
+    discountPercentage: 10.91,
+    stockQuantity: 20,
+    brand: "65a7e20102e12c44f599440a",
+    category: "65a7e24602e12c44f5994437",
+    thumbnail:
+      "https://images.unsplash.com/photo-1575583153865-d6c30eb00e87?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1575583153865-d6c30eb00e87?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1668069226492-508742b03147?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994487",
+    title: "formal offices shoes",
+    description:
+      "Pattern Type: Solid, Material: PU, Toe Shape: Pointed Toe ,Outsole Material: Rubber",
+    price: 57,
+    discountPercentage: 12,
+    stockQuantity: 68,
+    brand: "65a7e20102e12c44f5994408",
+    category: "65a7e24602e12c44f5994437",
+    thumbnail:
+      "https://images.unsplash.com/photo-1621665422129-a03cc387bc7d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1657034321685-1fba1b2751f3?q=80&w=749&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1621665422129-a03cc387bc7d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994488",
+    title: "Spring and summershoes",
+    description:
+      "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;",
+    price: 20,
+    discountPercentage: 8.71,
+    stockQuantity: 137,
+    brand: "65a7e20102e12c44f5994409",
+    category: "65a7e24602e12c44f5994437",
+    thumbnail:
+      "https://images.unsplash.com/photo-1620114884229-65d21f8c9423?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1565953198075-db265882ee68?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+      "https://images.unsplash.com/photo-1620114884229-65d21f8c9423?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994489",
+    title: "Stylish Casual Jeans Shoes",
+    description:
+      "High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable",
+    price: 58,
+    discountPercentage: 7.55,
+    stockQuantity: 129,
+    brand: "65a7e20102e12c44f5994409",
+    category: "65a7e24602e12c44f5994437",
+    thumbnail:
+      "https://images.unsplash.com/photo-1559067515-bf7d799b6d4d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1559067515-bf7d799b6d4d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1581498724680-f54ec65832de?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1675108658061-61c98ee47ced?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448a",
+    title: "Leather Straps Wristwatch",
+    description: "Style:Sport ,Clasp:Buckles ,Water Resistance Depth:3Bar",
+    price: 120,
+    discountPercentage: 7.14,
+    stockQuantity: 91,
+    brand: "65a7e20102e12c44f599440b",
+    category: "65a7e24602e12c44f5994438",
+    thumbnail:
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448b",
+    title: "Waterproof Leather Brand Watch",
+    description:
+      "Watch Crown With Environmental IPS Bronze Electroplating; Display system of 12 hours",
+    price: 46,
+    discountPercentage: 3.15,
+    stockQuantity: 95,
+    brand: "65a7e20102e12c44f599440c",
+    category: "65a7e24602e12c44f5994438",
+    thumbnail:
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=694&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=694&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=694&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448c",
+    title: "Royal Blue Premium Watch",
+    description:
+      "Men Silver Chain Royal Blue Premium Watch Latest Analog Watch",
+    price: 50,
+    discountPercentage: 2.56,
+    stockQuantity: 142,
+    brand: "65a7e20102e12c44f599440c",
+    category: "65a7e24602e12c44f5994438",
+    thumbnail:
+      "https://images.unsplash.com/photo-1495704907664-81f74a7efd9b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1495704907664-81f74a7efd9b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448d",
+    title: "Leather Strap Skeleton Watch",
+    description:
+      "Leather Strap Skeleton Watch for Men - Stylish and Latest Design",
+    price: 46,
+    discountPercentage: 10.2,
+    stockQuantity: 61,
+    brand: "65a7e20102e12c44f599440d",
+    category: "65a7e24602e12c44f5994438",
+    thumbnail:
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1180&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1180&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448e",
+    title: "Stainless Steel Wrist Watch",
+    description:
+      "Stylish Watch For Man (Luxury) Classy Men's Stainless Steel Wrist Watch - Box Packed",
+    price: 47,
+    discountPercentage: 17.79,
+    stockQuantity: 94,
+    brand: "65a7e20102e12c44f599440e",
+    category: "65a7e24602e12c44f5994438",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517463700628-5103184eac47?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1517463700628-5103184eac47?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599448f",
+    title: "Steel Analog Couple Watches",
+    description: "Elegant design, Stylish ,Unique & Trendy,Comfortable wear",
+    price: 35,
+    discountPercentage: 3.23,
+    stockQuantity: 24,
+    brand: "65a7e20102e12c44f599440f",
+    category: "65a7e24602e12c44f5994439",
+    thumbnail:
+      "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994490",
+    title: "Fashion Magnetic Wrist Watch",
+    description:
+      "Buy this awesome  The product is originally manufactured by the company and it's a top selling product with a very reasonable",
+    price: 60,
+    discountPercentage: 16.69,
+    stockQuantity: 46,
+    brand: "65a7e20102e12c44f599440f",
+    category: "65a7e24602e12c44f5994439",
+    thumbnail:
+      "https://images.unsplash.com/photo-1518639845127-064c4bd0c574?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1518639845127-064c4bd0c574?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994491",
+    title: "Stylish Luxury Digital Watch",
+    description:
+      "Stylish Luxury Digital Watch For Girls / Women - Led Smart Ladies Watches For Girls",
+    price: 57,
+    discountPercentage: 9.03,
+    stockQuantity: 77,
+    brand: "65a7e20102e12c44f5994410",
+    category: "65a7e24602e12c44f5994439",
+    thumbnail:
+      "https://images.unsplash.com/photo-1461141346587-763ab02bced9?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1461141346587-763ab02bced9?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994492",
+    title: "Golden Watch Pearls Bracelet Watch",
+    description:
+      "Product details of Golden Watch Pearls Bracelet Watch For Girls - Golden Chain Ladies Bracelate Watch for Women",
+    price: 47,
+    discountPercentage: 17.55,
+    stockQuantity: 89,
+    brand: "65a7e20102e12c44f5994411",
+    category: "65a7e24602e12c44f5994439",
+    thumbnail:
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Djpg",
+    images: [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994493",
+    title: "Stainless Steel Women",
+    description:
+      "Fashion Skmei 1830 Shell Dial Stainless Steel Women Wrist Watch Lady Bracelet Watch Quartz Watches Ladies",
+    price: 35,
+    discountPercentage: 8.98,
+    stockQuantity: 111,
+    brand: "65a7e20102e12c44f5994412",
+    category: "65a7e24602e12c44f5994439",
+    thumbnail:
+      "https://images.unsplash.com/photo-1662333084914-3eea84762671?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1662333084914-3eea84762671?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994494",
+    title: "Women Shoulder Bags",
+    description:
+      "LouisWill Women Shoulder Bags Long Clutches Cross Body Bags Phone Bags PU Leather Hand Bags Large Capacity Card Holders Zipper Coin Purses Fashion Crossbody Bags for Girls Ladies",
+    price: 46,
+    discountPercentage: 14.65,
+    stockQuantity: 17,
+    brand: "65a7e20102e12c44f5994413",
+    category: "65a7e24602e12c44f599443a",
+    thumbnail:
+      "https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994495",
+    title: "Handbag For Girls",
+    description:
+      "This fashion is designed to add a charming effect to your casual outfit. This Bag is made of synthetic leather.",
+    price: 23,
+    discountPercentage: 17.5,
+    stockQuantity: 27,
+    brand: "65a7e20102e12c44f5994413",
+    category: "65a7e24602e12c44f599443a",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dp",
+    images: [
+      "https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1594633313593-bab3825d0caf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994496",
+    title: "Fancy hand clutch",
+    description:
+      "This fashion is designed to add a charming effect to your casual outfit. This Bag is made of synthetic leather.",
+    price: 44,
+    discountPercentage: 10.39,
+    stockQuantity: 101,
+    brand: "65a7e20102e12c44f5994412",
+    category: "65a7e24602e12c44f599443a",
+    thumbnail:
+      "https://images.unsplash.com/photo-1559235107-f8c9583927f3?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1559235107-f8c9583927f3?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994497",
+    title: "Leather Hand Bag",
+    description:
+      "It features an attractive design that makes it a must have accessory in your collection. We sell different kind of bags for boys, kids, women, girls and also for unisex.",
+    price: 57,
+    discountPercentage: 11.19,
+    stockQuantity: 43,
+    brand: "65a7e20102e12c44f5994414",
+    category: "65a7e24602e12c44f599443a",
+    thumbnail:
+      "https://images.unsplash.com/photo-1654707634802-a8282d72950e?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1654707634802-a8282d72950e?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994498",
+    title: "Seven Pocket Women Bag",
+    description:
+      "Seven Pocket Women Bag Handbags Lady Shoulder Crossbody Bag Female Purse Seven Pocket Bag",
+    price: 68,
+    discountPercentage: 14.87,
+    stockQuantity: 13,
+    brand: "65a7e20102e12c44f5994415",
+    category: "65a7e24602e12c44f599443a",
+    thumbnail:
+      "https://images.unsplash.com/photo-1541267732407-8f72c182cf11?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1541267732407-8f72c182cf11?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f5994499",
+    title: "Silver Ring Set Women",
+    description:
+      "Jewelry Type:RingsCertificate Type:NonePlating:Silver PlatedShapeattern:noneStyle:CLASSICReligious",
+    price: 70,
+    discountPercentage: 13.57,
+    stockQuantity: 51,
+    brand: "65a7e20102e12c44f5994416",
+    category: "65a7e24602e12c44f599443b",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449a",
+    title: "Rose Ring",
+    description:
+      "Brand: The Greetings Flower Colour: RedRing Colour: GoldenSize: Adjustable",
+    price: 100,
+    discountPercentage: 3.22,
+    stockQuantity: 149,
+    brand: "65a7e20102e12c44f5994414",
+    category: "65a7e24602e12c44f599443b",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB８fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449b",
+    title: "Rhinestone Korean Style Open Rings",
+    description:
+      "Fashion Jewellery 3Pcs Adjustable Pearl Rhinestone Korean Style Open Rings For Women",
+    price: 30,
+    discountPercentage: 8.02,
+    stockQuantity: 9,
+    brand: "65a7e20102e12c44f5994417",
+    category: "65a7e24602e12c44f599443b",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449c",
+    title: "Elegant Female Pearl Earrings",
+    description:
+      "Elegant Female Pearl Earrings Set Zircon Pearl Earings Women Party Accessories 9 Pairs/Set",
+    price: 30,
+    discountPercentage: 12.8,
+    stockQuantity: 16,
+    brand: "65a7e20102e12c44f5994417",
+    category: "65a7e24602e12c44f599443b",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449d",
+    title: "Chain Pin Tassel Earrings",
+    description:
+      "Pair Of Ear Cuff Butterfly Long Chain Pin Tassel Earrings - Silver ( Long Life Quality Product)",
+    price: 45,
+    discountPercentage: 17.75,
+    stockQuantity: 9,
+    brand: "65a7e20102e12c44f5994418",
+    category: "65a7e24602e12c44f599443b",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB８fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB８fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB８fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449e",
+    title: "Round Silver Frame Sun Glasses",
+    description:
+      "A pair of sunglasses can protect your eyes from being hurt. For car driving, vacation travel, outdoor activities, social gatherings,",
+    price: 19,
+    discountPercentage: 10.1,
+    stockQuantity: 78,
+    brand: "65a7e20102e12c44f5994419",
+    category: "65a7e24602e12c44f599443c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1508296695146-257a814070b4?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1508296695146-257a814070b4?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1567473810954-507d59716c25?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f599449f",
+    title: "Kabir Singh Square Sunglass",
+    description:
+      "OrigInal Metal Kabir Singh design 2020 Sunglasses Men Brand Designer Sun Glasses Kabir Singh Square Sunglass",
+    price: 50,
+    discountPercentage: 15.6,
+    stockQuantity: 78,
+    brand: "65a7e20102e12c44f5994419",
+    category: "65a7e24602e12c44f599443c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1564245659875-79f41f648854?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1564245659875-79f41f648854?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a0",
+    title: "Wiley X Night Vision Yellow Glasses",
+    description:
+      "Wiley X Night Vision Yellow Glasses for Riders - Night Vision Anti Fog Driving Glasses - Free Night Glass Cover - Shield Eyes From Dust and Virus- For Night Sport Matches",
+    price: 30,
+    discountPercentage: 6.33,
+    stockQuantity: 115,
+    brand: "65a7e20102e12c44f599441a",
+    category: "65a7e24602e12c44f599443c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1515613813261-5cd015bcd184?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1515613813261-5cd015bcd184?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1548426244-daec2adda8c8?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a1",
+    title: "Square Sunglasses",
+    description:
+      "Fashion Oversized Square Sunglasses Retro Gradient Big Frame Sunglasses For Women One Piece Gafas Shade Mirror Clear Lens 17059",
+    price: 28,
+    discountPercentage: 13.89,
+    stockQuantity: 64,
+    brand: "65a7e20102e12c44f599441a",
+    category: "65a7e24602e12c44f599443c",
+    thumbnail:
+      "hhttps://images.unsplash.com/photo-1677725979845-e1895887e1d5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1677725979845-e1895887e1d5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a2",
+    title: "LouisWill Men Sunglasses",
+    description:
+      "LouisWill Men Sunglasses Polarized Sunglasses UV400 Sunglasses Day Night Dual Use Safety Driving Night Vision Eyewear AL-MG Frame Sun Glasses with Free Box for Drivers",
+    price: 50,
+    discountPercentage: 11.27,
+    stockQuantity: 92,
+    brand: "65a7e20102e12c44f5994413",
+    category: "65a7e24602e12c44f599443c",
+    thumbnail:
+      "https://images.unsplash.com/photo-1502929254524-5e4f51903baa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1502929254524-5e4f51903baa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a3",
+    title: "Bluetooth Aux",
+    description:
+      "Bluetooth Aux Bluetooth Car Aux Car Bluetooth Transmitter Aux Audio Receiver Handfree Car Bluetooth Music Receiver Universal 3.5mm Streaming A2DP Wireless Auto AUX Audio Adapter With Mic For Phone MP3",
+    price: 25,
+    discountPercentage: 10.56,
+    stockQuantity: 22,
+    brand: "65a7e20102e12c44f599441b",
+    category: "65a7e24602e12c44f599443d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1529653762956-b0a27278529c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1529653762956-b0a27278529c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a4",
+    title: "t Temperature Controller Incubator Controller",
+    description:
+      "Both Heat and Cool Purpose, Temperature control range; -50 to +110, Temperature measurement accuracy; 0.1, Control accuracy; 0.1",
+    price: 40,
+    discountPercentage: 11.3,
+    stockQuantity: 37,
+    brand: "65a7e20102e12c44f599441c",
+    category: "65a7e24602e12c44f599443d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a5",
+    title: "TC Reusable Silicone Magic Washing Gloves",
+    description:
+      "TC Reusable Silicone Magic Washing Gloves with Scrubber, Cleaning Brush Scrubber Gloves Heat Resistant Pair for Cleaning of Kitchen, Dishes, Vegetables and Fruits, Bathroom, Car Wash, Pet Care and Multipurpose",
+    price: 29,
+    discountPercentage: 3.19,
+    stockQuantity: 42,
+    brand: "65a7e20102e12c44f599441d",
+    category: "65a7e24602e12c44f599443d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a6",
+    title: "Qualcomm original Car Charger",
+    description:
+      "best Quality CHarger , Highly Recommended to all best Quality CHarger , Highly Recommended to all",
+    price: 40,
+    discountPercentage: 17.53,
+    stockQuantity: 79,
+    brand: "65a7e20102e12c44f599441d",
+    category: "65a7e24602e12c44f599443d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a7",
+    title: "Cycle Bike Glow",
+    description:
+      "Universal fitment and easy to install no special wires, can be easily installed and removed. Fits most standard tyre air stem valves of road, mountain bicycles, motocycles and cars.Bright led will turn on w",
+    price: 35,
+    discountPercentage: 11.08,
+    stockQuantity: 63,
+    brand: "65a7e20102e12c44f599441e",
+    category: "65a7e24602e12c44f599443d",
+    thumbnail:
+      "https://images.unsplash.com/photo-1528262504524-55405ebf4e68?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1528262504524-55405ebf4e68?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a8",
+    title: "Black Motorbike",
+    description:
+      "Engine Type:Wet sump, Single Cylinder, Four Stroke, Two Valves, Air Cooled with SOHC (Single Over Head Cam) Chain Drive Bore & Stroke:47.0 x 49.5 MM",
+    price: 569,
+    discountPercentage: 13.63,
+    stockQuantity: 115,
+    brand: "65a7e20102e12c44f599441f",
+    category: "65a7e24602e12c44f599443e",
+    thumbnail:
+      "https://images.unsplash.com/flagged/photo-1578240358966-610647316c40?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/flagged/photo-1578240358966-610647316c40?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944a9",
+    title: "HOT SALE IN EUROPE electric racing motorcycle",
+    description:
+      "HOT SALE IN EUROPE electric racing motorcycle electric motorcycle for sale adult electric motorcycles",
+    price: 920,
+    discountPercentage: 14.4,
+    stockQuantity: 22,
+    brand: "65a7e20102e12c44f5994420",
+    category: "65a7e24602e12c44f599443e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1608571423539-e951b9b3871e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHByb2R1Y3RzfGVufDB8fDB8fHww",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944aa",
+    title: "Automatic Motor Gas Motorcycles",
+    description:
+      "150cc 4-Stroke Motorcycle Automatic Motor Gas Motorcycles Scooter motorcycles 150cc scooter",
+    price: 1050,
+    discountPercentage: 3.34,
+    stockQuantity: 127,
+    brand: "65a7e20102e12c44f5994421",
+    category: "65a7e24602e12c44f599443e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1637045602770-c7e1e47161b7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    images: [
+      "https://images.unsplash.com/photo-1637045602770-c7e1e47161b7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944ab",
+    title: "new arrivals Fashion motocross goggles",
+    description:
+      "new arrivals Fashion motocross goggles motorcycle motocross racing motorcycle",
+    price: 900,
+    discountPercentage: 3.85,
+    stockQuantity: 109,
+    brand: "65a7e20102e12c44f5994422",
+    category: "65a7e24602e12c44f599443e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1591216105236-5ba45970702a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1591216105236-5ba45970702a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944ac",
+    title: "Wholesale cargo lashing Belt",
+    description:
+      "Wholesale cargo lashing Belt Tie Down end Ratchet strap customized strap 25mm motorcycle 1500kgs with rubber handle",
+    price: 930,
+    discountPercentage: 17.67,
+    stockQuantity: 144,
+    brand: "65a7e20102e12c44f5994423",
+    category: "65a7e24602e12c44f599443e",
+    thumbnail:
+      "https://images.unsplash.com/photo-1608461864721-b8f50c91c147?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1608461864721-b8f50c91c147?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944ad",
+    title: "lighting ceiling kitchen",
+    description:
+      "Wholesale slim hanging decorative kid room lighting ceiling kitchen chandeliers pendant light modern",
+    price: 30,
+    discountPercentage: 14.89,
+    stockQuantity: 96,
+    brand: "65a7e20102e12c44f5994424",
+    category: "65a7e24602e12c44f599443f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1542728928-1413d1894ed1?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1542728928-1413d1894ed1?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944ae",
+    title: "Metal Ceramic Flower",
+    description:
+      "Metal Ceramic Flower Chandelier Home Lighting American Vintage Hanging Lighting Pendant Lamp",
+    price: 35,
+    discountPercentage: 10.94,
+    stockQuantity: 146,
+    brand: "65a7e20102e12c44f5994425",
+    category: "65a7e24602e12c44f599443f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944af",
+    title: "3 lights lndenpant kitchen islang",
+    description:
+      "3 lights lndenpant kitchen islang dining room pendant rice paper chandelier contemporary led pendant light modern chandelier",
+    price: 34,
+    discountPercentage: 5.92,
+    stockQuantity: 44,
+    brand: "65a7e20102e12c44f5994426",
+    category: "65a7e24602e12c44f599443f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1540932239986-30128078f3c5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1540932239986-30128078f3c5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944b0",
+    title: "American Vintage Wood Pendant Light",
+    description:
+      "American Vintage Wood Pendant Light Farmhouse Antique Hanging Lamp Lampara Colgante",
+    price: 46,
+    discountPercentage: 8.84,
+    stockQuantity: 138,
+    brand: "65a7e20102e12c44f5994425",
+    category: "65a7e24602e12c44f599443f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1458172594959-b57570af4d0a?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1458172594959-b57570af4d0a?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+  {
+    _id: "65a7e45902e12c44f59944b1",
+    title: "Crystal chandelier maria theresa for 12 light",
+    description: "Crystal chandelier maria theresa for 12 light",
+    price: 47,
+    discountPercentage: 16,
+    stockQuantity: 133,
+    brand: "65a7e20102e12c44f5994427",
+    category: "65a7e24602e12c44f599443f",
+    thumbnail:
+      "https://images.unsplash.com/photo-1529310399831-ed472b81d589?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    images: [
+      "https://images.unsplash.com/photo-1529310399831-ed472b81d589?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    isDeleted: false,
+    updatedAt: "2024-02-07T09:22:57.840Z",
+  },
+];
+
+exports.seedProduct = async () => {
+  try {
+    await Product.deleteMany();
+    await Product.insertMany(products);
+    console.log("Product seeded successfully");
+  } catch (error) {
+    console.log(error);
+  }
+};

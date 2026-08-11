@@ -57,7 +57,7 @@ exports.create = async (req, res) => {
   try {
     const category = new Category(req.body);
     const data = await category.save();
-    res.status(201).json({ data });
+    res.status(201).json(data);
   } catch (error) {
     console.log(error);
     res.status(500);

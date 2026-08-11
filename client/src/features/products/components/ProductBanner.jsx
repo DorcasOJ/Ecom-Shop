@@ -74,7 +74,7 @@ export const ProductBanner = ({ images }) => {
                 />
               ) : null}
             </div>
-          ))}
+          ))},
         </div>
       </div>
       <div style={{ alignSelf: "center" }}>

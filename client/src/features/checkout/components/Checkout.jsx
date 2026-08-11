@@ -87,6 +87,7 @@ export const Checkout = () => {
       total: orderTotal + SHIPPING + TAXES,
     };
     dispatch(createOrderAsync(order));
+    // dispatch(resetCartByUserIdAsync())
     setDisableCheckoutButton(true);
   };
 
